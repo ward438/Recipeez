@@ -1,23 +1,13 @@
-import UserNameContext from './contexts/userNameContext'
-import {UserName} from './contexts/userNameContext'
-import React, {useState, useContext} from 'react'
-import Box from '@mui/material/Box';
-// import styles from '../styles/Home.module.css'
-import TabHeader from './tab_header'
+import React, {useState} from 'react'
+import { MainLayout } from './components/layouts/main';
 
 
-
-
-export default function Home() {   
-
+export default function Home() {  
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (    
     <>
-        <TabHeader>  
-          <UserName/>
-        </TabHeader>
-        <Box sx={{width: '100%', border: '2px solid #241313b3', borderRadius: '0px 5px 5px 5px'}}>
-          <p>Recipe Stuff</p>
-        </Box>
+      {isLoggedIn && <MainLayout/>}
+      {!isLoggedIn && <div>Todo - login page</div>}
     </>
   )
 }

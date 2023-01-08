@@ -2,7 +2,7 @@ import React, {useState, createContext,useContext, useEffect} from "react"
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux"
-import {fetchUserProfile} from "../../store/slices/users/userProfile";
+import { fetchUserProfile } from "../../store/slices/users/userProfile";
 
 
 export const UserNameContext = createContext({
@@ -10,12 +10,12 @@ export const UserNameContext = createContext({
     setUser: ()=>{}
 })
 
-export const UserName = () => {
+export const Profile = () => {
 
     const dispatch = useDispatch();
     const userProfile = useSelector(state=>state.userProfile);
+    // console.log(userProfile)
 
-    console.log(userProfile)
 
     useEffect(()=>{
         dispatch(fetchUserProfile());
@@ -39,4 +39,4 @@ export const UserName = () => {
 }
 
 
-export default UserNameContext;
+export default Profile;
