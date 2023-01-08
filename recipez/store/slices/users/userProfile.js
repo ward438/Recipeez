@@ -10,10 +10,10 @@ export const fetchUserProfile = createAsyncThunk(name, async (_, { dispatch, get
         const randomNum = Math.floor(Math.random() * users.length);
         
         
-        setTimeout(()=>{
-            resolve(users[randomNum])  
-        }, 2000)
-        
+        // setTimeout(()=>{
+        //     resolve(users[randomNum])  
+        // }, 2000)
+        resolve(users[randomNum])  
     })
 })
 
