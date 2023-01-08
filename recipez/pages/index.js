@@ -8,7 +8,8 @@ import TabHeader from './tab_header'
 
 
 
-export default function Home() {  
+export default function Home() {   
+
   return (    
     <>
         <TabHeader>  
