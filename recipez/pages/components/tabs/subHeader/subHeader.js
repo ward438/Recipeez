@@ -2,7 +2,8 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import { createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-
+import { SearchBarFilter } from '../../searchBarFilter/searchBar';
+SearchBarFilter
 
 const mainHeaderTheme = createTheme({  
     typography: {
@@ -25,7 +26,8 @@ const mainHeaderTheme = createTheme({
   });
 
 
-export const SubHeader = () => {
+export const SubHeader = ({recipe, setRecipe,filteredInput, setFilteredInput}) => {
+    const [textState, setTextState] = React.useState('')   
     return <>   
         <Box>
             <Box sx={mainHeaderTheme?.typography} 
@@ -33,7 +35,8 @@ export const SubHeader = () => {
                 noValidate
                 // autoComplete="off"
             >          
-                <TextField id="filled-basic" label="Search" variant="filled" /> 
+                <TextField id="filled-basic"  onInput={(e)=> {setTextState(e.target.value.toLowerCase())}}/> 
+                <SearchBarFilter searchValue={textState} filteredInput={filteredInput} setFilteredInput={setFilteredInput} recipe={recipe}/>
             </Box>       
             <Box sx={border?.typography}/>           
         </Box>     

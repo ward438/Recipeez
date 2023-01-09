@@ -12,22 +12,24 @@ import { SubHeader } from "../tabs/subHeader/subHeader";
 export const ActiveTabContext = createContext()
 
 export const MainLayout= () =>{
+    
+    const [filteredInput, setFilteredInput] = React.useState([])   
     const tabs = [
-        {name: 'Home', component: <Home/>},
+        {name: 'Home', component: <Home recipeItem={filteredInput}/>},
         {name: 'Breakfast', component: <Breakfast/>},
         {name: 'Lunch', component:<Lunch/>},
         {name: 'Dinner', component: <Dinner/>},
         {name: 'Treats', component: <Treats/>},
     ];
     const [activeTabIndex, setActiveTabIndex] = useState(0);
-
+    // console.log(filteredInput)
 
     return <>
     <ActiveTabContext.Provider value={{setActiveTabIndex}}>
         <TabHeader tabs={tabs}>  
             <Profile/>
         </TabHeader>
-        <SubHeader/>
+        <SubHeader filteredInput={filteredInput} setFilteredInput={setFilteredInput}/>
         <div style={{paddingTop: '20px'}}>{tabs[activeTabIndex].component}</div>
     </ActiveTabContext.Provider>
   </>

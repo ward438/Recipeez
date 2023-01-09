@@ -1,9 +1,18 @@
-import { SubHeader } from "./tabs/subHeader/subHeader"
+import { MealCard } from "./mealTypes/mealCard"
+// import { RecipeModal } from "./recipeModal"
 
-SubHeader
+export const Home = ({recipeItem}) =>{
 
-export const Home = () =>{
+    const handleCard = (recipeName) => {
+        if(recipeName?.name){
+            return <>
+                <MealCard recipe={recipeItem}/>
+                {/* <RecipeModal recipe={recipeItem}/> */}
+            </>
+        }else return <>nothing</>
+    }
+
     return <>
-        Home Page
+        {handleCard(recipeItem)}
     </>
 }

@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { Typography } from "@mui/material";
+import Grid from '@mui/material/Unstable_Grid2';
+const foodImage = require('../../../images/food.jpg').default
 
 const Item = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
@@ -15,19 +17,22 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function CompleteRecipe({recipe}) {
   return (
     <Box
-      sx={{
-        // display: 'flex',
-        // flexWrap: 'wrap',
-        '& > :not(style)': {
-        
+      sx={{'& > :not(style)': {        
         //   width: 128,
         //   height: 128,
         },
       }}
     >
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-            Recipe: {recipe?.name}
-        </Typography>  
+        <Grid container spacing={2}>
+            <Grid xs={6}>
+                <Typography id="modal-modal-title" variant="p" component="p">
+                    <h1>{recipe?.name}</h1>
+                </Typography> 
+            </Grid>
+            <Grid xs={6}>
+                <img src={foodImage.src} style={{maxWidth: '175px', maxHeight: '175px'}}/>
+            </Grid>        
+        </Grid>         
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Description: {recipe?.description}
         </Typography>  
@@ -36,7 +41,7 @@ export default function CompleteRecipe({recipe}) {
         </Typography>      
         <Item>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Description: {recipe?.steps}
+                Steps: {recipe?.story}
             </Typography>
         </Item>
     </Box>
