@@ -24,7 +24,7 @@ export const Lunch = ()=>{
     },  [])
     
     return <>                   
-            <Box sx={{display:'inline-flex'}}>
+            <Box sx={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
                 {lunchRecipes?.fulfilled && <>
                     {lunchRecipes?.data.map(recipe=>{
                         return handLunchRecipe(recipe)                

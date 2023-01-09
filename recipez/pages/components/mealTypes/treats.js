@@ -19,7 +19,7 @@ export const Treats = ()=>{
     },  [])
     
     return <>                   
-            <Box sx={{display:'inline-flex'}}>
+            <Box sx={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
                 {treatRecipes?.fulfilled && <>
                     {treatRecipes?.data.map(recipe=>{
                         return handleTreatsRecipe(recipe)                

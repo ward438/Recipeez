@@ -1,5 +1,4 @@
 import { MealCard } from "./mealTypes/mealCard"
-// import { RecipeModal } from "./recipeModal"
 
 export const Home = ({recipeItem}) =>{
 
@@ -7,7 +6,6 @@ export const Home = ({recipeItem}) =>{
         if(recipeName?.name){
             return <>
                 <MealCard recipe={recipeItem}/>
-                {/* <RecipeModal recipe={recipeItem}/> */}
             </>
         }else return <>nothing</>
     }

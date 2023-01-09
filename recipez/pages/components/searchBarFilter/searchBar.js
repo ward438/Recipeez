@@ -1,31 +1,23 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { fetchBreakfastRecipes } from "../../../store/slices/recipes/breakfastRecipes";
 
-export const SearchBarFilter = ({searchValue, setFilteredInput}) => {
-    // console.log(searchValue)
-    const dispatch = useDispatch();
-    const breakfastMealData = useSelector(state=>state?.breakfastRecipes)
+export const SearchBarFilter = ({searchValue, setFilteredInput,breakfastMealData,lunchMealData,dinnerMealData,treatsMealData,appetizerRecipes}) => {
+    let combinedDataArr = [breakfastMealData,lunchMealData,dinnerMealData,treatsMealData,appetizerRecipes]
 
-    const handleCompare = (userInput,reduxData) => {
-        let data = reduxData;        
-        if(data.length !== undefined & data.length !== null) {
+    const handleCompare = (userInput,combinedDataArr) => {
+        let data = combinedDataArr; 
+        if(data.length !== undefined & data.length !== null) {            
             data.filter(item => {       
-                if(item?.name === userInput || item?.description === userInput) {
-                    return setFilteredInput(item)
-                }
+                Object.values(item).filter(item => {                    
+                    if(item?.name === userInput || item?.description === userInput) {
+                        return setFilteredInput(item)
+                    }
+                })             
             })    
-        } return
+        }
+        return
     }
-
-    useEffect(()=> {
-        dispatch(fetchBreakfastRecipes())
-        
-    },[])
-
     
-    handleCompare(searchValue,breakfastMealData.data)
-
+    handleCompare(searchValue,combinedDataArr)
+    
     return 
 
 

@@ -20,7 +20,7 @@ console.log(dinnerRecipes)
     },  [])
     
     return <>                   
-            <Box sx={{display:'inline-flex'}}>
+            <Box sx={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
                 {dinnerRecipes?.fulfilled && <>
                     {dinnerRecipes?.data.map(recipe=>{
                         return handleDinnerRecipe(recipe)                

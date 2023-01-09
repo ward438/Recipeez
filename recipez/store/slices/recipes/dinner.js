@@ -7,9 +7,9 @@ export const fetchDinnerRecipes = createAsyncThunk(name, async (_, { dispatch, g
 
     return await new Promise((resolve, reject) =>{  // Mocks api call instead of axios
         const recipes = [
-            {name: 'Pot Roast', description: 'meat and toasted bread', ingredients: ['meat', 'lettuce', 'tomatoe', 'toasted bread']}, 
-            {name: 'Stuffed Cabbage', description: 'The old shit you eat', ingredients: ['old food']}, 
-            {name: 'Gross Ass Chicken Breast', description: 'kjhjkhjkhjkhkjh', ingredients: ['pancake powder', '1 cup of milk', '2 eggs']}, 
+            {name: 'pot roast', description: 'meat and toasted bread', ingredients: ['meat', 'lettuce', 'tomatoe', 'toasted bread'],type: 'dinner'}, 
+            {name: 'stuffed cabbage', description: 'The old shit you eat', ingredients: ['old food']}, 
+            {name: 'gross ass chicken', description: 'kjhjkhjkhjkhkjh', ingredients: ['pancake powder', '1 cup of milk', '2 eggs'],type: 'dinner'}, 
         ]
         
         // setTimeout(()=>{

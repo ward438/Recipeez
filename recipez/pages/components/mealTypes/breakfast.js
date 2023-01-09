@@ -10,7 +10,7 @@ export const Breakfast = ()=>{
     const breakfastRecipes = useSelector(state=>state.breakfastRecipes);
 
     const handleBkfastRecipe = (recipe) => { 
-        return <div key={recipe.name}>
+        return <div key={recipe?.name}>
                  <MealCard recipe={recipe}/>                
         </div>
     }
@@ -20,12 +20,13 @@ export const Breakfast = ()=>{
     },  [])
     
     return <>                   
-            <Box sx={{display:'inline-flex'}}>
+            <Box sx={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
                 {breakfastRecipes.fulfilled && <>
                     {breakfastRecipes.data.map(recipe=>{
                         return handleBkfastRecipe(recipe)                
                     })}
                 </>}
+                
             </Box>
         {breakfastRecipes.loading && <>Loading</>}
         {breakfastRecipes.errored && <>Errored</>}
