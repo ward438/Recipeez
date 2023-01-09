@@ -1,14 +1,14 @@
 import {createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 
-const name = 'breakfastRecipes';
+const name = 'lunchRecipes';
 
-export const fetchBreakfastRecipes = createAsyncThunk(name, async (_, { dispatch, getState, rejectWithValue, fulfillWithValue}) =>{    
+export const fetchLunchRecipes = createAsyncThunk(name, async (_, { dispatch, getState, rejectWithValue, fulfillWithValue}) =>{    
 
     return await new Promise((resolve, reject) =>{  // Mocks api call instead of axios
         const recipes = [
-            {name: 'Eggs', description: 'Eggs and stuff', ingredients: ['Eggs you idiot']}, 
-            {name: 'Pancakes', description: 'Pancakes and stuff', ingredients: ['pancake powder', '1 cup of milk', '2 eggs']}, 
+            {name: 'Club Sandwich', description: 'meat and toasted bread', ingredients: ['meat', 'lettuce', 'tomatoe', 'toasted bread']}, 
+            {name: 'Left Overs', description: 'The old shit you eat', ingredients: ['old food']}, 
             {name: 'yummy stuff', description: 'kjhjkhjkhjkhkjh', ingredients: ['pancake powder', '1 cup of milk', '2 eggs']}, 
         ]
         
@@ -19,7 +19,7 @@ export const fetchBreakfastRecipes = createAsyncThunk(name, async (_, { dispatch
     })
 })
 
-export const breakfastRecipes = createSlice({
+export const lunchRecipes = createSlice({
     name: name,
     initialState: {
         data: {},
@@ -29,16 +29,16 @@ export const breakfastRecipes = createSlice({
     },
     reducers: {},
     extraReducers: builder =>{
-        builder.addCase(fetchBreakfastRecipes.pending, state =>{
+        builder.addCase(fetchLunchRecipes.pending, state =>{
             state.loading = true;
             state.errored = false;
             state.fulfilled = false;
         });
-        builder.addCase(fetchBreakfastRecipes.rejected, state =>{
+        builder.addCase(fetchLunchRecipes.rejected, state =>{
             state.loading = false;
             state.errored = true;
         });
-        builder.addCase(fetchBreakfastRecipes.fulfilled, (state, action) =>{
+        builder.addCase(fetchLunchRecipes.fulfilled, (state, action) =>{
             state.loading = false;
             state.errored = false;
             state.fulfilled = true;
@@ -47,4 +47,4 @@ export const breakfastRecipes = createSlice({
     }
 })
 
-export default breakfastRecipes.reducer;
+export default lunchRecipes.reducer;
