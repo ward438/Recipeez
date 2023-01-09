@@ -24,7 +24,6 @@ export const MainLayout= () =>{
         {name: 'Appetizers', component: <Appetizer/>}
     ];
     const [activeTabIndex, setActiveTabIndex] = useState(0);
-    console.log(filteredInput)
 
     return <>
     <ActiveTabContext.Provider value={{setActiveTabIndex}}>

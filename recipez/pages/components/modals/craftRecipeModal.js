@@ -2,7 +2,7 @@ import React, {useState, createContext,useContext, useEffect} from "react"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';           
 import Modal from '@mui/material/Modal';
-import CompleteRecipe from "./mealTypes/completeMealCard";
+import CraftRecipeCard from "../mealCards/craftRecipeCard";
 
 const style = {
     position: 'absolute',
@@ -17,12 +17,12 @@ const style = {
   };
 
 
-export const RecipeModal = ({recipe}) => {
+export const CraftRecipeModal = ({recipe}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return <>
-    <Button onClick={handleOpen}>View Recipe</Button>
+    <Button onClick={handleOpen} sx={{color: '#f5d9c9'}}>Craft Recipe</Button>
     <Modal
         open={open}
         onClose={handleClose}
@@ -30,7 +30,7 @@ export const RecipeModal = ({recipe}) => {
         aria-describedby="modal-modal-description"
     >
         <Box sx={style}>              
-            <CompleteRecipe recipe={recipe}/>        
+            <CraftRecipeCard recipe={recipe}/>        
         </Box>
     </Modal>
 </>
