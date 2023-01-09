@@ -6,6 +6,7 @@ import {Dinner} from "../../components/mealTypes/dinner";
 import {Treats} from "../../components/mealTypes/treats";
 import { TabHeader } from "../tabs/header";
 import Profile from "../profile";
+import { SubHeader } from "../tabs/subHeader/subHeader";
 
 
 export const ActiveTabContext = createContext()
@@ -26,7 +27,8 @@ export const MainLayout= () =>{
         <TabHeader tabs={tabs}>  
             <Profile/>
         </TabHeader>
-        <div>{tabs[activeTabIndex].component}</div>
+        <SubHeader/>
+        <div style={{paddingTop: '20px'}}>{tabs[activeTabIndex].component}</div>
     </ActiveTabContext.Provider>
   </>
 }

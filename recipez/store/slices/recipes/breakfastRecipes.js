@@ -9,6 +9,7 @@ export const fetchBreakfastRecipes = createAsyncThunk(name, async (_, { dispatch
         const recipes = [
             {name: 'Eggs', description: 'Eggs and stuff', ingredients: ['Eggs you idiot']}, 
             {name: 'Pancakes', description: 'Pancakes and stuff', ingredients: ['pancake powder', '1 cup of milk', '2 eggs']}, 
+            {name: 'yummy stuff', description: 'kjhjkhjkhjkhkjh', ingredients: ['pancake powder', '1 cup of milk', '2 eggs']}, 
         ]
         
         setTimeout(()=>{
