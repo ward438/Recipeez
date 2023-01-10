@@ -11,6 +11,29 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
+
+const ingredients = [
+    'Bay Leaves',
+    'Cayenne',
+    'Chili Powder',
+    'Cinnamon-Ground ',
+    'Cinnamon-Stick',
+    'Cloves',
+    'Cumin',
+    'Curry Powder',
+    'Dill Weed',
+    'Garlic Powder',
+    'Ginger-Ground',
+    'Ginger--Fresh',
+    'Nutmeg-Ground',
+    'Onion Powder',
+    'Oregano',
+    'Paprika',
+    'Black Pepper',
+    'White Pepper'
+]
+
+
 const Item = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -22,35 +45,33 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function CraftRecipeCard({recipe}) {
 
     const [spices, setSpices] = React.useState('');
+    const ingredientArr = [{}]
 
     const handleChange = (event) => {
         setSpices(event.target.value);
-    };
+    }; 
 
+
+    console.log(ingredientArr)
   return (
-    <Box
-      sx={{'& > :not(style)': {        
-        //   width: 128,
-        //   height: 128,
-        },
-      }}
-    >
-        <Grid container spacing={2}>
+    <Box>
+        {/* create Title */}
+        <Grid container spacing={2}>            
             <Grid xs={6}>
                 Create Title
                 <TextField
                     id="outlined-multiline-flexible"
                     label=""
                     multiline
-                    maxRows={4}
+                    maxRows={4}                    
                 />   
             </Grid>
             <Grid xs={6}>
                 <img src={foodImage.src} style={{maxWidth: '175px', maxHeight: '175px'}}/>
             </Grid>        
-        </Grid>         
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-             
+        </Grid>   
+            {/* description */}
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>             
             <Box component="form" noValidate autoComplete="off">               
                 Description:
                 <div>                            
@@ -65,6 +86,7 @@ export default function CraftRecipeCard({recipe}) {
                 </div>      
             </Box>
         </Typography>  
+        {/* ingredients */}
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Ingredients: <Typography id="modal-modal-title" variant="p" component="p">                    
                     <FormControl sx={{ m: 1, minWidth: 175 }} size="small">
@@ -76,16 +98,20 @@ export default function CraftRecipeCard({recipe}) {
                             label="Spices"
                             onChange={handleChange}
                         >
-                            <MenuItem value="">
-                            <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>salt</MenuItem>
-                            <MenuItem value={20}>pepper</MenuItem>
-                            <MenuItem value={30}>cumin</MenuItem>
+                            <MenuItem value=""><em>None</em></MenuItem>
+                            {ingredients.map((mapItem, index)=> {                                                     
+                                    {ingredientArr.push(mapItem)}
+                                return <MenuItem value={index}>
+                                    {mapItem} {index}
+                                </MenuItem>
+
+                            })}                            
                         </Select>
                         </FormControl>
                     </Typography> 
-        </Typography>      
+        </Typography>
+            {spices}
+        {/* steps */}
         <Item>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 Steps: {recipe?.story}
