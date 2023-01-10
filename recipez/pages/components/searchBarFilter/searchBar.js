@@ -1,25 +1,25 @@
+import { useContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { SearchRecipeContext } from "../layouts/main";
 
-export const SearchBarFilter = ({searchValue, setFilteredInput,breakfastMealData,lunchMealData,dinnerMealData,treatsMealData,appetizerRecipes}) => {
-    let combinedDataArr = [breakfastMealData,lunchMealData,dinnerMealData,treatsMealData,appetizerRecipes]
-
-    const handleCompare = (userInput,combinedDataArr) => {
-        let data = combinedDataArr; 
-        if(data.length !== undefined & data.length !== null) {            
-            data.filter(item => {       
-                Object.values(item).filter(item => {                    
-                    if(item?.name === userInput || item?.description === userInput) {
-                        return setFilteredInput(item)
-                    }
-                })             
-            })    
+export const SearchBarFilter = ({searchValue}) => {
+    const {activeDataSet, searchRecipes, setSearchRecipes} = useContext(SearchRecipeContext)
+    
+    useEffect(()=>{
+        if(!searchValue){
+            setSearchRecipes(activeDataSet)
+        } else {
+            const recipes = activeDataSet.filter(recipe=>{
+                if(recipe.name.toLowerCase().includes(searchValue) ||
+                   recipe.description.toLowerCase().includes(searchValue)) {
+                    return recipe
+                }
+            })     
+            setSearchRecipes(recipes)
         }
-        return
-    }
+        
+    }, [searchValue, activeDataSet])
     
-    handleCompare(searchValue,combinedDataArr)
     
-    return 
-
-
-
+    return <></>
 }

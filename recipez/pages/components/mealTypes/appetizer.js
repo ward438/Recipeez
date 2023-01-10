@@ -3,31 +3,31 @@ import { useDispatch, useSelector } from "react-redux"
 import Box from '@mui/material/Box';
 import { MealCard } from "./mealCard";
 import { fetchAppetizerRecipes } from "../../../store/slices/recipes/appetizers";
+import { SearchRecipeContext } from "../layouts/main";
 
 export const Appetizer = ()=>{
 
-    const dispatch = useDispatch();
-    const selectorAppetizerRecipes = useSelector(state=>state?.appetizerRecipes);
+    const appetizerRecipes = useSelector(state=>state.appetizerRecipes);
 
-    const handleAppetizerRecipe = (recipe) => { 
-        return <div key={recipe?.name}>
-                 <MealCard recipe={recipe}/>                
-        </div>
-    }
-
-    useEffect(()=>{
-        dispatch(fetchAppetizerRecipes());
-    },  [])
-    
-    return <>                   
-            <Box sx={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
-                {selectorAppetizerRecipes?.fulfilled && <>
-                    {selectorAppetizerRecipes?.data.map(recipe=>{
-                        return handleAppetizerRecipe(recipe)                
-                    })}
-                </>}
-            </Box>
-        {selectorAppetizerRecipes?.loading && <>Loading</>}
-        {selectorAppetizerRecipes?.errored && <>Errored</>}
+    return <>
+        {appetizerRecipes.fulfilled && <>
+            <SearchRecipeContext.Consumer>
+                {({searchRecipes, setSearchRecipes}) => (
+                        <>
+                            { searchRecipes && 
+                                <div style={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
+                                    {searchRecipes.map((searchRecipe, index) =><MealCard key={index} recipe={searchRecipe}/>)}
+                                </div>
+                            }
+                            { !searchRecipes && <>Nothing</>}
+                        </>
+                    )}
+                    
+                </SearchRecipeContext.Consumer>
+            </>
+        }
+        {appetizerRecipes.loading && <>Loading</>}
+        {appetizerRecipes.errored && <>Errored</>}
     </>
+    
 }

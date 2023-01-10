@@ -13,10 +13,10 @@ export const MealCard = ({recipe}) => {
     return  <Card sx={{ maxWidth: 345 }}>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" textAlign='center'>
-                        <p>{recipe.name}</p>                       
+                        <p>{recipe.name}                      </p>
                         <img src={foodImage.src} style={{maxWidth: '175px', maxHeight: '175px'}}/>                         
                     </Typography>                    
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" component="div">
                         <p>{recipe.description}</p>
                     </Typography>
                 </CardContent>

@@ -8,30 +8,30 @@ import { useDispatch, useSelector } from "react-redux"
 import Box from '@mui/material/Box';
 import { MealCard } from "./mealCard";
 import { fetchLunchRecipes } from "../../../store/slices/recipes/lunch";
+import { SearchRecipeContext } from "../layouts/main";
 
 export const Lunch = ()=>{
 
-    const dispatch = useDispatch();
     const lunchRecipes = useSelector(state=>state?.lunchRecipes);
-    const handLunchRecipe = (recipe) => { 
-        return <div key={recipe?.name}>
-                 <MealCard recipe={recipe}/>                
-        </div>
-    }
-
-    useEffect(()=>{
-        dispatch(fetchLunchRecipes());
-    },  [])
     
     return <>                   
-            <Box sx={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
-                {lunchRecipes?.fulfilled && <>
-                    {lunchRecipes?.data.map(recipe=>{
-                        return handLunchRecipe(recipe)                
-                    })}
-                </>}
-            </Box>
-        {lunchRecipes?.loading && <>Loading</>}
-        {lunchRecipes?.errored && <>Errored</>}
+    {lunchRecipes.fulfilled && <>
+    <SearchRecipeContext.Consumer>
+        {({searchRecipes, setSearchRecipes}) => (
+                <>
+                    { searchRecipes && 
+                        <div style={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
+                            {searchRecipes.map((searchRecipe, index) =><MealCard key={index} recipe={searchRecipe}/>)}
+                        </div>
+                    }
+                    { !searchRecipes && <>Nothing</>}
+                </>
+            )}
+            
+        </SearchRecipeContext.Consumer>
     </>
+}
+{lunchRecipes.loading && <>Loading</>}
+{lunchRecipes.errored && <>Errored</>}
+</>
 }

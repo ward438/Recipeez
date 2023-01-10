@@ -22,7 +22,7 @@ export const fetchDinnerRecipes = createAsyncThunk(name, async (_, { dispatch, g
 export const dinnerRecipes = createSlice({
     name: name,
     initialState: {
-        data: {},
+        data: [],
         loading: false,
         errored: false,
         fulfilled: false

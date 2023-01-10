@@ -45,23 +45,8 @@ import { CraftRecipeModal } from "../../modals/craftRecipeModal";
         },
     });
 
-export const SubHeader = ({recipe, setRecipe,filteredInput, setFilteredInput}) => {
-    const dispatch = useDispatch();
-
+export const SubHeader = () => {
     const [textState, setTextState] = React.useState('')   
-    const breakfastMealData = useSelector(state=>state?.breakfastRecipes.data)
-    const lunchMealData = useSelector(state=>state?.lunchRecipes.data)
-    const dinnerMealData = useSelector(state=>state.dinnerRecipes.data)
-    const treatsMealData = useSelector(state=>state.treatsRecipes.data)
-    const appetizerRecipes = useSelector(state=>state.appetizerRecipes.data)
-
-    useEffect(()=> {
-        dispatch(fetchBreakfastRecipes())
-        dispatch(fetchLunchRecipes());
-        dispatch(fetchDinnerRecipes());
-        dispatch(fetchTreatsRecipes());
-        dispatch(fetchAppetizerRecipes());        
-    },[])
 
     return <>   
         <Box>
@@ -71,11 +56,10 @@ export const SubHeader = ({recipe, setRecipe,filteredInput, setFilteredInput}) =
                 autoComplete="off"
             >          
                 <TextField id="filled-basic"  onInput={(e)=> {setTextState(e.target.value.toLowerCase())}}/> 
-                <SearchBarFilter searchValue={textState} filteredInput={filteredInput} setFilteredInput={setFilteredInput} recipe={recipe} breakfastMealData={breakfastMealData} lunchMealData={lunchMealData} dinnerMealData={dinnerMealData} treatsMealData={treatsMealData} appetizerRecipes={appetizerRecipes}/>
+                <SearchBarFilter searchValue={textState}/>
             </Box>  
             <Box sx={{position: 'relative',float: 'right', margin: '-50px 15px 0px 0px' }}>
-                <ThemeProvider theme={buttonTheme}>
-                    
+                <ThemeProvider theme={buttonTheme}>                    
                     <CraftRecipeModal/>
                 </ThemeProvider>
             </Box>     

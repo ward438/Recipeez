@@ -3,32 +3,31 @@ import { fetchBreakfastRecipes } from "../../../store/slices/recipes/breakfastRe
 import { useDispatch, useSelector } from "react-redux"
 import Box from '@mui/material/Box';
 import { MealCard } from "./mealCard";
+import { SearchRecipeContext } from "../layouts/main";
 
 export const Breakfast = ()=>{
 
-    const dispatch = useDispatch();
     const breakfastRecipes = useSelector(state=>state.breakfastRecipes);
 
-    const handleBkfastRecipe = (recipe) => { 
-        return <div key={recipe?.name}>
-                 <MealCard recipe={recipe}/>                
-        </div>
-    }
-
-    useEffect(()=>{
-        dispatch(fetchBreakfastRecipes());
-    },  [])
-    
-    return <>                   
-            <Box sx={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
-                {breakfastRecipes.fulfilled && <>
-                    {breakfastRecipes.data.map(recipe=>{
-                        return handleBkfastRecipe(recipe)                
-                    })}
-                </>}
-                
-            </Box>
+    return <>
+        {breakfastRecipes.fulfilled && <>
+            <SearchRecipeContext.Consumer>
+                {({searchRecipes, setSearchRecipes}) => (
+                        <>
+                            { searchRecipes && 
+                                <div style={{display:'grid', gridGap: "20px", gridTemplateColumns: "repeat(auto-fill, 220px)",justifyContent: "center"}}>
+                                    {searchRecipes.map((searchRecipe, index) =><MealCard key={index} recipe={searchRecipe}/>)}
+                                </div>
+                            }
+                            { !searchRecipes && <>Nothing</>}
+                        </>
+                    )}
+                    
+                </SearchRecipeContext.Consumer>
+            </>
+        }
         {breakfastRecipes.loading && <>Loading</>}
         {breakfastRecipes.errored && <>Errored</>}
     </>
+
 }
