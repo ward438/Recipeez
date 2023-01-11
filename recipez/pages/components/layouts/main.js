@@ -55,7 +55,7 @@ export const MainLayout= () =>{
         }},
         {name: 'Treats', component: <Treats/>, dispatchEvents: [
             ()=>fetchTreatsRecipes(),
-        ], retrieveDataStore: ()=>{            
+        ], retrieveDataStore: ()=>{           
             setActiveDataSet([].concat( treatsMealData))
         }},
         {name: 'Appetizers', component: <Appetizer/>, dispatchEvents: [

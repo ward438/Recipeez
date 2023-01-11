@@ -1,21 +1,13 @@
 import {createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import { RecipesValues } from './values';
 
 const name = 'dinnerRecipes';
 
 export const fetchDinnerRecipes = createAsyncThunk(name, async (_, { dispatch, getState, rejectWithValue, fulfillWithValue}) =>{    
 
     return await new Promise((resolve, reject) =>{  // Mocks api call instead of axios
-        const recipes = [
-            {name: 'pot roast', description: 'meat and toasted bread', ingredients: ['meat', 'lettuce', 'tomatoe', 'toasted bread'],type: 'dinner'}, 
-            {name: 'stuffed cabbage', description: 'The old shit you eat', ingredients: ['old food']}, 
-            {name: 'gross ass chicken', description: 'kjhjkhjkhjkhkjh', ingredients: ['pancake powder', '1 cup of milk', '2 eggs'],type: 'dinner'}, 
-        ]
-        
-        // setTimeout(()=>{
-        //     resolve(recipes)  
-        // }, 2000)
-        resolve(recipes)  
+        // [...RecipesValues.dinner] destruceted to clone new instances of objects so that useEffect can see the change in the object and render appropriate data for the tabs
+        resolve([...RecipesValues.dinner]) 
     })
 })
 

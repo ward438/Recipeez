@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { SearchRecipeContext } from "../layouts/main";
 
 export const SearchBarFilter = ({searchValue}) => {

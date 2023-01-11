@@ -1,16 +1,24 @@
-import React from "react"
+import React, { useEffect } from "react"
+import Link from 'next/link'
 import { Typography } from "@mui/material";
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';           
-import { RecipeModal } from "../modals/recipeModal";
 
 const foodImage = require('../../../images/food.jpg').default
-  
-export const MealCard = ({recipe}) => {
-    
-    return  <Card sx={{ maxWidth: 345 }}>
+export const MealCard = ({recipe}) => {  
+    return  <>
+        <Link            
+            href={{
+                pathname: "/selected",
+                query: {
+                    recipe: recipe.name,
+                    mealType: recipe.type
+                }
+            }}
+            as={`/selected`}
+            style={{textDecoration: 'none' }}
+        >
+        <Card sx={{ maxWidth: 345 }} style={{cursor: 'pointer'}}>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" textAlign='center'>
                         <p>{recipe.name}                      </p>
@@ -19,12 +27,10 @@ export const MealCard = ({recipe}) => {
                     <Typography variant="body2" color="text.secondary" component="div">
                         <p>{recipe.description}</p>
                     </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">Share</Button>
-                        <RecipeModal recipe={recipe}/>
-                </CardActions>
-            </Card>
+                </CardContent>             
+            </Card>     
+        </Link>    
+    </>      
 }
             
             

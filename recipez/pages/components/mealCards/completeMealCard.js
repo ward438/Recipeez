@@ -5,45 +5,38 @@ import Paper from '@mui/material/Paper';
 import { Typography } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 const foodImage = require('../../../images/food.jpg').default
-
+const pancakes = require('../../../images/pancakes.jpg').default
 const Item = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     // height: 60,
-    // lineHeight: '60px',
+    // lineHeight: '60px',    
   }));
 
 
+
+
 export default function CompleteRecipe({recipe}) {
+  const story = recipe?.story
+
   return (
-    <Box
-      sx={{'& > :not(style)': {        
-        //   width: 128,
-        //   height: 128,
-        },
-      }}
-    >
-        <Grid container spacing={2}>
-            <Grid xs={6}>
-                <Typography id="modal-modal-title" variant="p" component="p">
-                    <h1>{recipe?.name}</h1>
-                </Typography> 
-            </Grid>
-            <Grid xs={6}>
-                <img src={foodImage.src} style={{maxWidth: '175px', maxHeight: '175px'}}/>
-            </Grid>        
-        </Grid>         
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Description: {recipe?.description}
-        </Typography>  
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Ingredients: {recipe?.ingredients}
-        </Typography>      
-        <Item>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Steps: {recipe?.story}
-            </Typography>
-        </Item>
+    <Box>       
+      <div className='recipeImages' style={{backgroundColor:'#ebeaea'}}>
+        <img src={foodImage.src} style={{}}/>
+        <img src={pancakes.src} style={{}}/>
+      </div>
+      <Typography id="modal-modal-title" variant="p" component="p" sx={{backgroundColor:'#ebeaea'}}>
+        <h1>{recipe?.name.toUpperCase()}</h1>
+      </Typography> 
+      <Typography id="modal-modal-description" sx={{ mt: 2 ,}}>
+          INGREDIENTS: {recipe?.ingredients}
+      </Typography>        
+      <Typography id="modal-modal-description" sx={{ mt: 2 , }}>
+          DESCRIPTION: {recipe?.description}
+      </Typography>           
+        <Typography id="modal-modal-description" sx={{ mt: 2  }}>
+            STORY: {story}                  
+        </Typography>
     </Box>
   );
 }

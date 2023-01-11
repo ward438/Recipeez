@@ -1,4 +1,5 @@
 import {createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RecipesValues } from './values';
 
 
 const name = 'lunchRecipes';
@@ -6,16 +7,8 @@ const name = 'lunchRecipes';
 export const fetchLunchRecipes = createAsyncThunk(name, async (_, { dispatch, getState, rejectWithValue, fulfillWithValue}) =>{    
 
     return await new Promise((resolve, reject) =>{  // Mocks api call instead of axios
-        const recipes = [
-            {name: 'club sandwich', description: 'meat and toasted bread', ingredients: ['meat', 'lettuce', 'tomatoe', 'toasted bread'],type: 'lunch'}, 
-            {name: 'left overs', description: 'The old shit you eat', ingredients: ['old food'],type: 'lunch'}, 
-            {name: 'yummy stuff', description: 'kjhjkhjkhjkhkjh', ingredients: ['pancake powder', '1 cup of milk', '2 eggs'],type: 'lunch'}, 
-        ]
-        
-        // setTimeout(()=>{
-        //     resolve(recipes)  
-        // }, 2000)
-        resolve(recipes) 
+        resolve([...RecipesValues.lunch])
+
     })
 })
 

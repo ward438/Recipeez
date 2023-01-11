@@ -5,11 +5,12 @@ import dinnerRecipes from "./slices/recipes/dinner.js";
 import lunchRecipes from "./slices/recipes/lunch.js";
 import treatsRecipes from "./slices/recipes/treats.js";
 import userProfile from './slices/users/userProfile';
-
+import selectedRecipe from "./slices/recipes/selectedRecipe";
 
 const reducers = combineReducers(
     {
         userProfile: userProfile,
+        selectedRecipe: selectedRecipe,
         breakfastRecipes: breakfastRecipes,
         lunchRecipes: lunchRecipes,
         dinnerRecipes: dinnerRecipes,
