@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';           
 import Modal from '@mui/material/Modal';
 import CompleteRecipe from "../mealCards/completeMealCard";
+import ConversionTable from "../mealCards/conversionCard";
 
 const style = {
     position: 'absolute',
@@ -17,12 +18,12 @@ const style = {
   };
 
 
-export const RecipeModal = ({recipe}) => {
+export const ConverisonModal = ({recipe}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return <>
-    <Button onClick={handleOpen}>View Recipe</Button>
+    <Button onClick={handleOpen}>Conversion Table</Button>
     <Modal
         open={open}
         onClose={handleClose}
@@ -30,7 +31,7 @@ export const RecipeModal = ({recipe}) => {
         aria-describedby="modal-modal-description"
     >
         <Box sx={style}>              
-            <CompleteRecipe recipe={recipe}/>        
+           <ConversionTable/>       
         </Box>
     </Modal>
 </>
