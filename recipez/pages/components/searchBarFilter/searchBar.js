@@ -9,8 +9,8 @@ export const SearchBarFilter = ({searchValue}) => {
             setSearchRecipes(activeDataSet)
         } else {
             const recipes = activeDataSet.filter(recipe=>{
-                if(recipe.name.toLowerCase().includes(searchValue) ||
-                   recipe.description.toLowerCase().includes(searchValue)) {
+                if(recipe?.name.toLowerCase().includes(searchValue) ||
+                   recipe?.description.toLowerCase().includes(searchValue)) {
                     return recipe
                 }
             })     

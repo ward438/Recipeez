@@ -27,7 +27,6 @@ export const MainLayout= () =>{
     const dinnerMealData = useSelector(state=>state.dinnerRecipes.data)
     const treatsMealData = useSelector(state=>state.treatsRecipes.data)
     const appetizerRecipes = useSelector(state=>state.appetizerRecipes.data)
-
     const tabs = [
         {name: 'Home', component: <Home/>, dispatchEvents: [
             ()=>fetchBreakfastRecipes(),

@@ -1,14 +1,17 @@
 import {createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RecipesValues } from './values';
+import axios from 'axios';
 
 
 const name = 'appetizerRecipes';
 
 export const fetchAppetizerRecipes = createAsyncThunk(name, async (_, { dispatch, getState, rejectWithValue, fulfillWithValue}) =>{    
-
-    return await new Promise((resolve, reject) =>{  // Mocks api call instead of axios
-        resolve([...RecipesValues.appetizers])
-    })
+    const API_URL = "http://127.0.0.1:8000/api/recipez/?type=appetizer"    
+    return axios.get(`${API_URL}`).then((response) => {
+        if(response.status != 200){
+            rejectWithValue("API Call Failed")
+        }
+        return response.data;
+    })  
 })
 
 export const appetizerRecipes = createSlice({

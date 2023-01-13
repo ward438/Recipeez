@@ -1,0 +1,7 @@
+
+1. Activate virtual environment: .\venv\Scripts\activate
+
+- Install dependencies when modify your requirement file(s) -  pip install -r .\django_react_proj\requirements\local.txt
+- When you make a model change - python manage.py makemigrations - This will generate new files in the migrations folder
+- to play around with your data run python manage.py shell_plus
+- python manage.py runscript insert_recipe_data to load our data

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CompleteRecipe from "./components/mealCards/completeMealCard";
 import Link from 'next/link'
 import { fetchSelectedRecipe } from "../store/slices/recipes/selectedRecipe";
+import axios, {isCancel, AxiosError} from 'axios';
 
 export const SearchRecipeContext = createContext()
 export const ActiveTabContext = createContext()
@@ -16,8 +17,9 @@ export default function SelectedRecipe () {
     useEffect(() => {
         if(!router.isReady) return;
         const query = router.query;        
-        dispatch(fetchSelectedRecipe(query))
-      }, [router.isReady, router.query]);   
+        dispatch(fetchSelectedRecipe(query))       
+      }, [router.isReady, router.query]);  
+
     
     return <>
          <Link            

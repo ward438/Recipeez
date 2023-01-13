@@ -1,14 +1,16 @@
 import {createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RecipesValues } from './values';
+import axios from 'axios';
 
 const name = 'dinnerRecipes';
 
 export const fetchDinnerRecipes = createAsyncThunk(name, async (_, { dispatch, getState, rejectWithValue, fulfillWithValue}) =>{    
-
-    return await new Promise((resolve, reject) =>{  // Mocks api call instead of axios
-        // [...RecipesValues.dinner] destruceted to clone new instances of objects so that useEffect can see the change in the object and render appropriate data for the tabs
-        resolve([...RecipesValues.dinner]) 
-    })
+    const API_URL = "http://127.0.0.1:8000/api/recipez/?type=dinner"    
+    return axios.get(`${API_URL}`).then((response) => {
+        if(response.status != 200){
+            rejectWithValue("API Call Failed")
+        }
+        return response.data;
+    })      
 })
 
 export const dinnerRecipes = createSlice({

@@ -25,3 +25,4 @@ export const RecipesValues = {
         {name: 'gross ass red hots', description: 'kjhjkhjkhjkhkjh', ingredients: ['pancake powder', '1 cup of milk', '2 eggs'],type: 'treat'}, 
     ]
 }
+

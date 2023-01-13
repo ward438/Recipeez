@@ -1,17 +1,15 @@
-import React, {useEffect} from "react"
-import { fetchBreakfastRecipes } from "../../../store/slices/recipes/breakfastRecipes"
-import { useDispatch, useSelector } from "react-redux"
-import Box from '@mui/material/Box';
+import React from "react"
+import { useSelector } from "react-redux"
 import { MealCard } from "./mealCard";
 import { SearchRecipeContext } from "../layouts/main";
 
 export const Breakfast = ()=>{
 
-    const breakfastRecipes = useSelector(state=>state.breakfastRecipes);
+    const breakfastRecipes = useSelector(state=>state.breakfastRecipes);    
 
     return <>
         {breakfastRecipes.fulfilled && <>
-            <SearchRecipeContext.Consumer>
+            <SearchRecipeContext.Consumer>               
                 {({searchRecipes, setSearchRecipes}) => (
                         <>
                             { searchRecipes && 

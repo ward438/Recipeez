@@ -1,14 +1,19 @@
+import React, {useState, createContext,useContext, useEffect} from "react"
 import {createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RecipesValues } from './values';
+import axios from 'axios';
+
 
 const name = 'breakfastRecipes';
-
-export const fetchBreakfastRecipes = createAsyncThunk(name, async (_, { dispatch, getState, rejectWithValue, fulfillWithValue}) =>{    
-
-    return await new Promise((resolve, reject) =>{  // Mocks api call instead of axios       
-        resolve([...RecipesValues.breakfast]) 
-    })
+export const fetchBreakfastRecipes = createAsyncThunk(name, async (_, { dispatch, getState, rejectWithValue, fulfillWithValue}) =>{       
+    const API_URL = "http://127.0.0.1:8000/api/recipez/?type=breakfast"    
+    return axios.get(`${API_URL}`).then((response) => {
+        if(response.status != 200){
+            rejectWithValue("API Call Failed")
+        }
+        return response.data;
+    })  
 })
+
 
 export const breakfastRecipes = createSlice({
     name: name,
@@ -37,5 +42,6 @@ export const breakfastRecipes = createSlice({
         });
     }
 })
+
 
 export default breakfastRecipes.reducer;

@@ -2,14 +2,7 @@ import React, {useEffect} from "react"
 import Box from '@mui/material/Box';
 import { createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import { SearchBarFilter } from '../../searchBarFilter/searchBar';
-import { useDispatch, useSelector } from "react-redux"
-import { fetchAppetizerRecipes } from "../../../../store/slices/recipes/appetizers";
-import { fetchBreakfastRecipes } from "../../../../store/slices/recipes/breakfastRecipes";
-import { fetchLunchRecipes } from "../../../../store/slices/recipes/lunch";
-import { fetchDinnerRecipes } from "../../../../store/slices/recipes/dinner";
-import { fetchTreatsRecipes } from "../../../../store/slices/recipes/treats";
 import { ThemeProvider } from "@emotion/react";
 import { CraftRecipeModal } from "../../modals/craftRecipeModal";
 
